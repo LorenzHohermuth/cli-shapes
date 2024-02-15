@@ -1,12 +1,14 @@
 /*
 Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
 
+	"github.com/LorenzHohermuth/cli-shapes/internal/color"
+	"github.com/LorenzHohermuth/cli-shapes/internal/renderer"
+	"github.com/LorenzHohermuth/cli-shapes/pkg/image"
 	"github.com/spf13/cobra"
 )
 
@@ -21,12 +23,27 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("draw called")
+		fileFlag, _ := cmd.Flags().GetString("png")
+		if fileFlag != "" {
+			pix := image.ImageToPixles(fileFlag)
+			s := ""
+			for _, y := range pix {
+				for _, x := range y {
+					color, non := color.GetTrueColor([3]int{x.R, x.G, x.B})
+					char := renderer.GetChar(x.Brightness())
+					s += color + char + non
+				}
+				s += "\n"
+			}
+			fmt.Println(s)
+
+		}
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(drawCmd)
+	drawCmd.Flags().String("png", "", "png image")
 
 	// Here you will define your flags and configuration settings.
 

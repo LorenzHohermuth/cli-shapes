@@ -32,7 +32,7 @@ func PrintColorPallet() {
 	}
 }
 
-func GetColor(p [3]int) (string, string) {
+func GetDefaultColor(p [3]int) (string, string) {
 	var color string = "\033[39m"
 	var delta float64 = 255
 	r2  := float64(p[0])
