@@ -7,18 +7,13 @@ import (
 	"os"
 )
 
-type Pixel struct {
-	R int
-	G int
-	B int
-	A int
-}
 func ImageToPixles(path string) [][]Pixel {
 	image.RegisterFormat("png", "png", png.Decode, png.DecodeConfig)
 	file, err := os.Open(path)
 	check(err)
 	defer file.Close()
-	return  getPixles(file)
+	mat := getPixles(file)
+	return squashMatrix(mat)
 }
 
 func getPixles(f io.Reader) [][]Pixel {
