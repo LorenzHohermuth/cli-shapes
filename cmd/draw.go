@@ -24,6 +24,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fileFlag, _ := cmd.Flags().GetString("png")
+		//colorFlag, _ := cmd.Flags().GetBool("ascii-colors")
 		if fileFlag != "" {
 			pix := image.ImageToPixles(fileFlag)
 			s := ""
@@ -44,6 +45,7 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(drawCmd)
 	drawCmd.Flags().String("png", "", "png image")
+	drawCmd.Flags().Bool("ascii-colors", false, "uses the ascii color insted of true colors")
 
 	// Here you will define your flags and configuration settings.
 
