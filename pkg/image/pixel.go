@@ -18,7 +18,7 @@ type Pixel struct {
 	A int
 }
 
-func averagePixel(arr []Pixel) Pixel {
+func AveragePixel(arr []Pixel) Pixel {
 	l := len(arr)
 	var sumR, sumG, sumB, sumA int
 	for _, v := range arr {

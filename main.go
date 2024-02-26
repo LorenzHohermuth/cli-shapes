@@ -5,10 +5,10 @@ package main
 
 import (
 	"github.com/LorenzHohermuth/cli-shapes/cmd"
-	//"github.com/LorenzHohermuth/cli-shapes/pkg/canvas"
+	"github.com/LorenzHohermuth/cli-shapes/pkg/canvas"
 )
 
 func main() {
-	//canvas.CharacterAnalyse("󰎖")
+	canvas.CharacterAnalyse("")
 	cmd.Execute()
 }

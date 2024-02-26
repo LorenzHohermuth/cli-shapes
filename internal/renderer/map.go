@@ -111,4 +111,3 @@ func GetChar(brightness float64) string {
 	}
 	return char
 }
-

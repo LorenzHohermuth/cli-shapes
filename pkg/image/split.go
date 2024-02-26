@@ -39,7 +39,7 @@ func squashMatrix(pix [][]Pixel) [][]Pixel{
 	
 	for x := range tensor {
 		for y := range tensor[x] {
-			p := averagePixel(tensor[x][y])
+			p := AveragePixel(tensor[x][y])
 			out[y][x] = p
 		}
 	}

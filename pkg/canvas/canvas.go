@@ -1,7 +1,6 @@
 package canvas
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -10,10 +9,10 @@ import (
 )
 
 func CharacterAnalyse(character string) string{
-	const fontSize = 40.0
+	const fontSize = 30.0
 	const hFontToPixelRatio = 0.3
 	const wFontToPixelRatio = 0.225
-	fileName :=  fmt.Sprintf("tmp/nf-icon-%s.png" , character)
+	fileName := "tmp/nf-icon-nf.png"
 	// Create new canvas of dimension 100x100 mm
 	c := canvas.New(fontSize * wFontToPixelRatio, fontSize * hFontToPixelRatio)
 
@@ -25,11 +24,11 @@ func CharacterAnalyse(character string) string{
 			panic(err)
 	}
 
-	face := nerdFont.Face(fontSize, canvas.Black, canvas.FontBold, canvas.FontNormal)
+	face := nerdFont.Face(fontSize, canvas.White, canvas.FontNormal, canvas.FontNormal)
 
 
 	background := canvas.Rectangle(ctx.Width() + 1, ctx.Height() + 1);
-	ctx.SetFillColor(canvas.White)
+	ctx.SetFillColor(canvas.Black)
 	ctx.DrawPath(0, 0, background)
 	ctx.DrawText(0, 1, canvas.NewTextLine(face, character, canvas.Left))
 
