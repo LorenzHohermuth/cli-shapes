@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/LorenzHohermuth/cli-shapes/internal/generated"
 	"github.com/LorenzHohermuth/cli-shapes/internal/nerdfont"
 	"github.com/LorenzHohermuth/cli-shapes/pkg/canvas"
 	"github.com/LorenzHohermuth/cli-shapes/pkg/image"
@@ -24,10 +25,14 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		icons := nerdfont.ParseFile("./nerd-font-icons")
+		f := generated.CreatFile("nerdFont")
+		defer generated.CloseFile(f)
 		for i, v := range icons {
 			fmt.Printf("%g %% %s\n", (float64(i) + 1) / float64(len(icons)) * 100, v)
 			path := canvas.CharacterAnalyse(v)
-			image.ImageToPixles(path)
+			img := image.ImageToPixles(path)
+			line := fmt.Sprintf("\t\"%s\":%g,", v, image.GetBrightness(img))
+			generated.AddToFile(line, f)
 		}
 	},
 }

@@ -42,3 +42,22 @@ func check(err error) {
 		panic(err)
 	}
 }
+
+func GetBrightness(img [][]Pixel) float64 {
+	amountOfPixels := 0
+	avgR, avgG, avgB, avgA := 0, 0, 0, 0
+	for _, y := range img {
+		for _, x := range y {
+			avgR += x.R
+			avgG += x.G
+			avgB += x.B
+			avgA += x.A
+			amountOfPixels++
+		}
+	}
+
+	return Pixel{avgR / amountOfPixels,
+		avgG / amountOfPixels,
+		avgB / amountOfPixels,
+		avgA / amountOfPixels}.Brightness()
+}

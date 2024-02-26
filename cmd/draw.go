@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/LorenzHohermuth/cli-shapes/internal/color"
-	"github.com/LorenzHohermuth/cli-shapes/internal/renderer"
+	"github.com/LorenzHohermuth/cli-shapes/internal/generated"
 	"github.com/LorenzHohermuth/cli-shapes/pkg/image"
 	"github.com/spf13/cobra"
 )
@@ -31,7 +31,7 @@ to quickly create a Cobra application.`,
 			for _, y := range pix {
 				for _, x := range y {
 					color, non := color.GetTrueColor([3]int{x.R, x.G, x.B})
-					char := renderer.GetChar(x.Brightness())
+					char := generated.GetChar(x.Brightness())
 					s += color + char + non
 				}
 				s += "\n"
